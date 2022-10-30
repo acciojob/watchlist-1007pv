@@ -10,14 +10,14 @@ public class MovieService {
     @Autowired
     MovieRepository repository;
 
-    static void addMovie(Movie movie) {
+    public static void addMovie(Movie movie) {
         MovieRepository.addMovie(movie);
     }
 
-    static void addDirector(Director director){
+    public static void addDirector(Director director){
         MovieRepository.addDirector(director);
     }
-    static void addMovieDirectorPair(Movie movie, Director director){
+    public static void addMovieDirectorPair(Movie movie, Director director){
         MovieRepository.addMovieDirectorPair(movie,director);
     }
 

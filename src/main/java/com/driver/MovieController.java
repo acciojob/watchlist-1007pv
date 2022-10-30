@@ -6,7 +6,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.websocket.server.PathParam;
-import java.util.HashMap;
 import java.util.List;
 
 @RestController
@@ -65,9 +64,3 @@ public class MovieController {
         return new ResponseEntity<>("Success",HttpStatus.OK);
     }
 }
-    /*  Delete all directors and all movies by them from the records: DELETE /movies/delete-director-by-name
-        No params or body required
-        Return success message wrapped in a ResponseEntity object
-        Controller Name - deleteAllDirectors
-        (Note that there can be some movies on your watchlist that aren’t mapped to any of the director. Make sure you do not remove them.)
-*/
