@@ -33,8 +33,8 @@ public class MovieService {
         return MovieRepository.getMoviesByDirectorName();
     }
 
-    public static List<Movie> getAllMovies() {
-        return MovieRepository.getAllMovies();
+    public static List<Movie> findAllMovies() {
+        return MovieRepository.findAllMovies();
     }
 
     public static Movie deleteDirectorByName(String name) {

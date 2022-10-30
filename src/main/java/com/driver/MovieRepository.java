@@ -55,7 +55,7 @@ public class MovieRepository {
         return movieList;
     }
 
-    public static List<Movie> getAllMovies() {
+    public static List<Movie> findAllMovies() {
         List<Movie> movieList = new ArrayList<>();
         for(Movie movie : movieHashMap.values()){
             movieList.add(movie);
