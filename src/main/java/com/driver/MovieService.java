@@ -8,40 +8,40 @@ import java.util.List;
 @Service
 public class MovieService {
     @Autowired
-    MovieRepository repository;
+    MovieRepository movieRepository;
 
-    public static void addMovie(Movie movie) {
-        MovieRepository.addMovie(movie);
+    public void addMovie(Movie movie) {
+        movieRepository.addMovie(movie);
     }
 
-    public static void addDirector(Director director){
-        MovieRepository.addDirector(director);
+    public void addDirector(Director director){
+        movieRepository.addDirector(director);
     }
-    public static void addMovieDirectorPair(Movie movie, Director director){
-        MovieRepository.addMovieDirectorPair(movie,director);
-    }
-
-    public static Movie getMovieByName(String name) {
-        return MovieRepository.getMovieByName(name);
+    public void addMovieDirectorPair(String directorName, String movieName){
+        movieRepository.addMovieDirectorPair(directorName,movieName);
     }
 
-    public static Director getDirectorByName(String name) {
-        return MovieRepository.getDirectorByName(name);
+    public Movie getMovieByName(String name) {
+        return movieRepository.getMovieByName(name);
     }
 
-    public static List<Movie> getMoviesByDirectorName() {
-        return MovieRepository.getMoviesByDirectorName();
+    public Director getDirectorByName(String name) {
+        return movieRepository.getDirectorByName(name);
     }
 
-    public static List<Movie> findAllMovies() {
-        return MovieRepository.findAllMovies();
+    public List<Movie> getMoviesByDirectorName() {
+        return movieRepository.getMoviesByDirectorName();
     }
 
-    public static Movie deleteDirectorByName(String name) {
-        return MovieRepository.deleteDirectorByName(name);
+    public List<Movie> findAllMovies() {
+        return movieRepository.findAllMovies();
     }
 
-    public static Director deleteAllDirectors(String name) {
-        return MovieRepository.deleteAllDirectors(name);
+    public void deleteDirectorByName(String name) {
+        movieRepository.deleteDirectorByName(name);
+    }
+
+    public Director deleteAllDirectors() {
+        return movieRepository.deleteAllDirectors();
     }
 }
