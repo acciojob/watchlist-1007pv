@@ -46,14 +46,17 @@ public class MovieRepository {
 
     public List<String> getMoviesByDirectorName(String name){
         List<String> movieListByDirector = new ArrayList<>();
-        movieListByDirector.add(name);
+        for(Map.Entry<String,Movie> entry : movieHashMap.entrySet()){
+            if(entry.getKey().equals(name))
+                movieListByDirector.add(entry.getKey());
+        }
         return movieListByDirector;
     }
 
     public List<String> findAllMovies() {
         List<String> movieList = new ArrayList<>();
         for(Map.Entry<String,Movie> entry : movieHashMap.entrySet()){
-            movieList.add(String.valueOf(entry.getValue()));
+            movieList.add(entry.getKey());
         }
         return movieList;
     }
@@ -69,8 +72,6 @@ public class MovieRepository {
     }
 
     public void deleteAllDirectors() {
-        for (String directorName : movieDirectorHashMap.keySet()) {
-            deleteDirectorByName(directorName);
-        }
+        directorHashMap = new HashMap<>();
     }
 }
