@@ -5,7 +5,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import javax.websocket.server.PathParam;
 import java.util.List;
 
 @RestController
@@ -30,21 +29,27 @@ public class MovieController {
     @PostMapping("/add-movie-director-pair")
     public ResponseEntity<String> addMovieDirectorPair(@RequestParam("directorName")String directorName,@RequestParam("movieName")String movieName){
         movieService.addMovieDirectorPair(directorName,movieName);
-        return new ResponseEntity("Success",HttpStatus.CREATED);
+        return new ResponseEntity<>("Success",HttpStatus.CREATED);
     }
 
     @GetMapping("/get-movie-by-name/{name}")
-    public ResponseEntity<Movie> getMovieByName(@PathParam("name") String name) {
-        return new ResponseEntity<>(movieService.getMovieByName(name),HttpStatus.OK);
+    public ResponseEntity<Movie> getMovieByName(@PathVariable("name") String name) {
+        if(movieService.getMovieByName(name)!=null) {
+            return new ResponseEntity<>(movieService.getMovieByName(name), HttpStatus.OK);
+        }
+        return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
     }
 
     @GetMapping("/get-director-by-name/{name}")
-    public ResponseEntity<Director> getDirectorByName(@PathParam("name") String name) {
-        return new ResponseEntity<>(movieService.getDirectorByName(name),HttpStatus.OK);
+    public ResponseEntity<Director> getDirectorByName(@PathVariable("name") String name) {
+        if(movieService.getDirectorByName(name)!=null) {
+            return new ResponseEntity<>(movieService.getDirectorByName(name), HttpStatus.OK);
+        }
+        return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
     }
 
     @GetMapping("/get-movies-by-director-name/{director}")
-    public ResponseEntity<List<Movie>> getMoviesByDirectorName(@PathParam("name") String name) {
+    public ResponseEntity<List<Movie>> getMoviesByDirectorName(@PathVariable("name") String name) {
         return new ResponseEntity<>(movieService.getMoviesByDirectorName(),HttpStatus.OK);
     }
 

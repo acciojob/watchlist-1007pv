@@ -1,12 +1,10 @@
 package com.driver;
 
 import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 @Component
 public class MovieRepository {
@@ -46,13 +44,11 @@ public class MovieRepository {
     }
 
     public List<Movie> getMoviesByDirectorName(){
-        List<Movie> movieList = new ArrayList<>(movieHashMap.values());
-        return movieList;
+        return new ArrayList<>(movieHashMap.values());
     }
 
     public List<Movie> findAllMovies() {
-        List<Movie> movieList = new ArrayList<>(movieHashMap.values());
-        return movieList;
+        return new ArrayList<>(movieHashMap.values());
     }
 
     public void deleteDirectorByName(String directorName) {
@@ -65,8 +61,9 @@ public class MovieRepository {
         movieDirectorHashMap.remove(directorName);
     }
 
-    public Director deleteAllDirectors() {
-        directorHashMap = new HashMap<>();
-        return null;
+    public void deleteAllDirectors() {
+        for (String directorName : movieDirectorHashMap.keySet()) {
+            deleteDirectorByName(directorName);
+        }
     }
 }
