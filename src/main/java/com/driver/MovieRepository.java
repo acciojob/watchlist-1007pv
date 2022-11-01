@@ -5,13 +5,14 @@ import org.springframework.stereotype.Component;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Component
 public class MovieRepository {
     public MovieRepository() {}
-    private HashMap<String, Movie> movieHashMap = new HashMap<>();
-    private HashMap<String, Director> directorHashMap = new HashMap<>();
-    private HashMap<String, List<Movie>> movieDirectorHashMap = new HashMap<>();
+    HashMap<String, Movie> movieHashMap = new HashMap<>();
+    HashMap<String, Director> directorHashMap = new HashMap<>();
+    HashMap<String, List<Movie>> movieDirectorHashMap = new HashMap<>();
 
     public void addMovie(Movie movie){
         Movie movieObj = new Movie(movie.getName(), movie.getDurationInMinutes(), movie.getImdbRating());
@@ -43,12 +44,18 @@ public class MovieRepository {
         return directorHashMap.get(name);
     }
 
-    public List<Movie> getMoviesByDirectorName(){
-        return new ArrayList<>(movieHashMap.values());
+    public List<String> getMoviesByDirectorName(String name){
+        List<String> movieListByDirector = new ArrayList<>();
+        movieListByDirector.add(name);
+        return movieListByDirector;
     }
 
-    public List<Movie> findAllMovies() {
-        return new ArrayList<>(movieHashMap.values());
+    public List<String> findAllMovies() {
+        List<String> movieList = new ArrayList<>();
+        for(Map.Entry<String,Movie> entry : movieHashMap.entrySet()){
+            movieList.add(String.valueOf(entry.getValue()));
+        }
+        return movieList;
     }
 
     public void deleteDirectorByName(String directorName) {

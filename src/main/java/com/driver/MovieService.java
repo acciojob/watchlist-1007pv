@@ -29,11 +29,11 @@ public class MovieService {
         return movieRepository.getDirectorByName(name);
     }
 
-    public List<Movie> getMoviesByDirectorName() {
-        return movieRepository.getMoviesByDirectorName();
+    public List<String> getMoviesByDirectorName(String directorName) {
+        return movieRepository.getMoviesByDirectorName(directorName);
     }
 
-    public List<Movie> findAllMovies() {
+    public List<String> findAllMovies() {
         return movieRepository.findAllMovies();
     }
 
